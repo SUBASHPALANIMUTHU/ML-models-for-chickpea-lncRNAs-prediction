@@ -1,179 +1,138 @@
-# ML-models-for-chickpea-lncRNAs-prediction
+# ML Models for Chickpea lncRNAs Prediction
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-green)](https://www.python.org/)
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)](https://jupyter.org/)
-
----
-
-This repository contains the complete implementation of three machine learning and deep learning models developed for my M.Sc. thesis titled:
-
-> **“Exploring the long non-coding RNAs in chickpea through machine learning.”**
-
-The models herein are built and evaluated for the prediction and classification of long non-coding RNAs (lncRNAs) in chickpea (*Cicer arietinum*). The project serves as a comprehensive solution for biologists and data scientists interested in computational approaches to transcriptomics, lncRNA discovery, and plant genomics.
+**Author:** SUBASHPALANIMUTHU  
+**Thesis:** *Exploring the long non-coding RNAs in chickpea through machine learning*
 
 ---
 
-## Table of Contents
+## Introduction
 
-- [Overview](#overview)
-- [Features](#features)
-- [Repository Structure](#repository-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Models](#models)
-- [Data](#data)
-- [Results](#results)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+Long non-coding RNAs (lncRNAs) play critical roles in regulating gene expression and plant development, yet their systematic identification in crops like chickpea (Cicer arietinum) remains a research challenge. This repository presents three distinct machine learning models developed to predict and annotate lncRNAs from chickpea genome data, forming the backbone of my M.Sc. thesis.
+
+The project leverages Python and Jupyter Notebooks for code development, data exploration, and reproducibility, with all work performed under Ubuntu Linux.
 
 ---
 
-## Overview
+## Methodology
 
-Long non-coding RNAs (lncRNAs) play significant roles in gene regulation and plant development. This repository explores computational strategies for lncRNA identification in chickpea using:
+1. **Data Collection and Preprocessing:**
+   - Chickpea genome and transcript sequences were downloaded from **NCBI** databases.
+   - Sequences were annotated using public datasets and verified through published literature.
+   - The **plncRNA** tool was used for initial screening and identification of probable long non-coding RNAs.
+   - Custom Python scripts were written for sequence feature extraction (length, GC content, ORF prediction, sequence motifs).
 
-- Classical Machine Learning models
-- Deep Learning frameworks
+2. **Feature Engineering:**
+   - Coding potential scores, sequence composition, and structure-based features were computed for each sequence.
+   - Data was split into training (known lncRNA and mRNA) and testing sets to avoid overfitting and to allow fair performance comparisons.
 
-The project demonstrates the end-to-end pipeline, including data preparation, feature extraction, model training, evaluation, and visualization.
+3. **Model Development:**
+   Three predictive models were implemented:
 
+   - **Model 1: Random Forest Classifier**
+     - Leverages ensemble decision trees to classify sequences as lncRNA vs. mRNA based on extracted features.
+     - Tuned using cross-validation and feature importance analysis.
+   
+   - **Model 2: Deep Learning - Convolutional/ Recurrent Neural Network**
+     - Utilizes keras/Tensorflow CNN (or LSTM) layers to capture complex sequence relationships.
+     - Designed to learn data representations from raw sequence data.
+     - Trained on labeled chickpea datasets.
+   
+   - **Model 3: Support Vector Machine (SVM)**
+     - Utilizes SVMs with customized kernel functions to separate lncRNA and mRNA classes.
+     - Applied various feature selection methods to improve predictive performance.
 
-## Features
+   (*All models were evaluated for accuracy, precision, recall, F1-score, and ROC-AUC.*)
 
-- **Preprocessing:** Ready-to-use scripts and notebooks for data cleaning and formatting.
-- **Feature Engineering:** Extraction of biologically relevant sequence features.
-- **Model Implementations:** Classical ML (e.g., SVM, RF) and Deep Learning models (e.g., CNN, LSTM).
-- **Evaluation:** Model performance metrics, visualization, and comparative analysis.
-- **Reproducibility:** Jupyter Notebooks with clear, step-by-step explanations.
+4. **Validation and Results:**
+   - Output from all models was compared against published chickpea lncRNA annotations.
+   - Visualizations and evaluation metrics are provided in Jupyter Notebooks for transparency and reproducibility.
 
 ---
 
-## Repository Structure
+## Directory Structure
 
 ```
 ML-models-for-chickpea-lncRNAs-prediction/
-│
-├── data/                   # Datasets for training and testing
-├── notebooks/              # Jupyter Notebooks for each stage/model
-├── scripts/                # Standalone Python scripts (preprocessing, training, etc.)
-├── results/                # Output files: model weights, figures, metrics
-├── requirements.txt        # Python dependencies
-├── LICENSE
-└── README.md
+├── data/                # Raw and processed genomic datasets
+├── notebooks/           # Jupyter Notebooks for development and results
+├── src/                 # Python scripts (feature extraction, model building, evaluation)
+├── requirements.txt     # Required Python libraries
+├── README.md            # Project documentation
+├── LICENSE              # Project license
 ```
 
-> The majority of the code is developed in **Jupyter Notebook (68.4%)**, with core logic and utilities in **Python (31.6%)**.
+---
+
+## Installation & Usage
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/SUBASHPALANIMUTHU/ML-models-for-chickpea-lncRNAs-prediction.git
+   cd ML-models-for-chickpea-lncRNAs-prediction
+   ```
+
+2. **Install Python Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   # Or use conda if preferred
+   # conda env create -f environment.yml
+   ```
+
+3. **Access Notebooks**
+   Launch Jupyter Notebook to explore code and results interactively:
+   ```bash
+   jupyter notebook
+   ```
+
+4. **Run Scripts**
+   Feature extraction, model training, and testing can be executed by running corresponding scripts from the `src/` directory.
 
 ---
 
-## Installation
+## Dependencies
 
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/SUBASHPALANIMUTHU/ML-models-for-chickpea-lncRNAs-prediction.git
-    cd ML-models-for-chickpea-lncRNAs-prediction
-    ```
-
-2. **Create a virtual environment (optional but recommended):**
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
-
-3. **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **Start Jupyter Notebook:**
-    ```bash
-    jupyter notebook
-    ```
-    Open the browser link provided to explore and execute the notebooks.
+- Python 3.7+  
+- Jupyter Notebook  
+- scikit-learn, keras/tensorflow, pandas, numpy, matplotlib, seaborn  
+- plncRNA tool ([url or instructions])
+- Ubuntu/Linux OS recommended for full compatibility
 
 ---
 
-## Usage
+## Data Sources
 
-- Explore the `notebooks/` directory to view and execute the full workflow:
-    1. Data preprocessing and exploration
-    2. Feature extraction and selection
-    3. Model training (ML and DL)
-    4. Performance evaluation
-
-- Run standalone scripts from the `scripts/` directory for automation or batch processing.
-
-**Example:**  
-To train and test a model, open the relevant notebook (e.g., `notebooks/02-Train-Model.ipynb`) and follow the instructions inside.
-
----
-
-## Models
-
-This project implements and evaluates:
-
-- **Machine Learning Models:**
-    - Support Vector Machine (SVM)
-    - Random Forest (RF)
-    - Logistic Regression
-
-- **Deep Learning Models:**
-    - Convolutional Neural Network (CNN)
-    - Long Short-Term Memory (LSTM)
-    - Hybrid architectures
-
-Each model is trained on hand-crafted features derived from RNA sequences, with thorough hyperparameter tuning and cross-validation.
-
----
-
-## Data
-
-- **Datasets:**  
-    - Curated sets of chickpea RNA sequences (lncRNAs and coding RNAs)
-    - Cleaned, labeled, and split into training and testing sets
-
-- **Sources:**  
-    - Publicly available databases and in-house annotations (refer to dataset documentation in the `data/` folder)
+- Chickpea genome and transcript datasets from [NCBI](https://www.ncbi.nlm.nih.gov/)
+- Published lncRNA and mRNA datasets for supervised learning
 
 ---
 
 ## Results
 
-- The repository includes:
-    - Model performance metrics (accuracy, precision, recall, F1-score, ROC-AUC)
-    - Visualizations (confusion matrices, ROC curves, etc.)
-    - Comparative analysis of all implemented models
-
-- See final results in the `results/` directory and summary tables/figures in the thesis report (or final notebook).
+- Performance metrics and comparisons among all models are plotted for clarity.
+- Highest F1-score and ROC-AUC observed with [best performing model].
+- All code and results are reproducible via provided notebooks.
 
 ---
 
-## Contributing
+## References
 
-Contributions, bug reports, and feature requests are welcome!
-
-1. Fork the repository
-2. Create your branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Create a new Pull Request
+- [NCBI Chickpea Genomics](https://www.ncbi.nlm.nih.gov/)
+- plncRNA tool documentation
+- [Relevant Thesis/Publications]
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+MIT License or specify appropriate terms.
 
 ---
 
 ## Contact
 
-- **Author:** Subash Palanimuthu
-- **Email:** [YourEmail@example.com](mailto:YourEmail@example.com)
-- **GitHub:** [SUBASHPALANIMUTHU](https://github.com/SUBASHPALANIMUTHU)
-
-For questions, feedback, or collaborations, please open an issue or contact the author directly.
+For questions, collaborations, or further information:  
+[GitHub Profile](https://github.com/SUBASHPALANIMUTHU)
 
 ---
+
+*If you use this code or data in your research, please cite or acknowledge this thesis and repository!*
