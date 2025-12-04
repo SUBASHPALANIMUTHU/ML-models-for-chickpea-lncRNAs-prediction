@@ -1,0 +1,49 @@
+# -----------------------------
+# Core Scientific Libraries
+# -----------------------------
+numpy
+pandas
+scikit-learn
+scipy
+
+# -----------------------------
+# Deep Learning (PyTorch)
+# -----------------------------
+torch
+torchvision
+torchaudio
+
+# -----------------------------
+# Bioinformatics Utilities
+# (Required for FASTA parsing, sequence loading)
+# -----------------------------
+biopython
+
+# -----------------------------
+# Visualization & Analysis
+# -----------------------------
+matplotlib
+seaborn
+shap
+
+# -----------------------------
+# Model Saving / Loading
+# -----------------------------
+joblib
+
+# -----------------------------
+# Progress Bars / Utility
+# -----------------------------
+tqdm
+
+# -----------------------------
+# Optional but Useful
+# -----------------------------
+pyyaml        # for config files
+notebook      # for Jupyter / Colab
+ipython       # interactive sessions
+
+# -----------------------------
+# For Consistent Reproducibility
+# -----------------------------
+python-dotenv   # environment variable management
